@@ -36,8 +36,10 @@
 
 </script>
 
-<input type="button" on:click={startEngine} value="Start Engine">
-<input type="button" on:click={stopEngine} value="Stop Engine">
+<div id="buttons">
+    <input type="button" on:click={startEngine} value="Start Engine">
+    <input type="button" id="stop-button" on:click={stopEngine} value="Stop Engine">
+</div>
 
 <div id="pistons">
     {#if type === "Inline 4"}
@@ -56,5 +58,33 @@
 </div>
 
 <style>
+    #pistons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 
+    #buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    input[type="button"] {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="button"]:hover {
+        background-color: #333;
+    }
+
+    #stop-button {
+        background-color: red;
+    }
 </style>
