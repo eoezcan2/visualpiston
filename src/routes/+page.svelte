@@ -15,7 +15,7 @@
             {/each}
         </select>
         <input type="range" min="0.1" max="1" step="0.1" bind:value={selectedSpeedMultiplier}>
-        <div>
+        <div id="sound-button" on:click={() => console.log("test")}>
             <img src="/volume.png" alt="Volume" width="30" height="30">
         </div>
     </div>
@@ -46,6 +46,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    #sound-button {
+        cursor: pointer;
     }
 
     input[type=range] {
