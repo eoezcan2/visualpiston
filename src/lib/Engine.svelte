@@ -47,6 +47,8 @@
 {:else if type === "Inline 2"}
     <Piston index="0" delay={delay} speed={speed * speedMultiplier} />
     <Piston index="1" delay={delay * 2} speed={speed * speedMultiplier} />
+{:else if type === "Single"}
+    <Piston index="0" delay={delay} speed={speed * speedMultiplier} />
 {:else }
     Not implemented yet!
 {/if}
