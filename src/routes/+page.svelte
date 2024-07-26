@@ -7,6 +7,7 @@
 </script>
 
 <main>
+    <h1>Visual Pistons</h1>
     <div id="options">
         <select bind:value={selectedType}>
             {#each engineTypes as engineType}
@@ -14,6 +15,9 @@
             {/each}
         </select>
         <input type="range" min="0.1" max="1" step="0.1" bind:value={selectedSpeedMultiplier}>
+        <div>
+            <img src="/volume.png" alt="Volume" width="30" height="30">
+        </div>
     </div>
     <div id="engine">
         <Engine type={selectedType} speedMultiplier={selectedSpeedMultiplier} />
@@ -24,28 +28,33 @@
     main {
         display: flex;
         flex-direction: column;
-        font-family: Arial, sans-serif;
+        font-family: "Courier New", serif;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 3em;
     }
 
     #options {
         display: flex;
+        align-items: center;
         flex-direction: column;
     }
 
     #engine {
-        margin-top: 5%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    input {
-        width: 100px;
+    input[type=range] {
+        width: 200px;
+        margin-top: 10px;
     }
 
     select {
-        width: 100px;
+        width: 200px;
         height: 40px;
-
     }
 </style>

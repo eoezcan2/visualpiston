@@ -52,22 +52,31 @@
         <Piston index="1" delay={delay * 2} speed={speed * speedMultiplier} />
     {:else if type === "Single"}
         <Piston index="0" delay={delay} speed={speed * speedMultiplier} />
+    {:else if type === "V4"}
+        <div>
+            <Piston index="0" delay={delay * 2} speed={speed * speedMultiplier} />
+            <Piston index="0" delay={delay} speed={speed * speedMultiplier} />
+            <br>
+            <Piston index="0" delay={delay * 2} speed={speed * speedMultiplier} />
+            <Piston index="0" delay={delay} speed={speed * speedMultiplier} />
+        </div>
     {:else }
         Not implemented yet!
     {/if}
 </div>
 
 <style>
-    #pistons {
+    #buttons {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
 
-    #buttons {
+    #pistons {
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-top: 2%;
     }
 
     input[type="button"] {
