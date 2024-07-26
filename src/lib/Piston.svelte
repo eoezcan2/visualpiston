@@ -12,22 +12,6 @@
     let isRunning : boolean = false;
     let pathCurrent : string = pathIdle;
 
-    async function run() {
-        isRunning = true;
-        await new Promise(resolve => setTimeout(resolve, (delay * index)));
-        while (isRunning) {
-            // sleep
-            await new Promise(resolve => setTimeout(resolve, speed));
-            pathCurrent = pathActive;
-            await new Promise(resolve => setTimeout(resolve, speed));
-            pathCurrent = pathIdle;
-        }
-    }
-
-    function stop() {
-        isRunning = false;
-    }
-
     onMount(() => {
         engineStore.subscribe(store => {
             if (store[index]) {
@@ -37,6 +21,32 @@
             }
         });
     });
+
+    function up() {
+        pathCurrent = pathActive;
+    }
+
+    function down() {
+        pathCurrent = pathIdle;
+    }
+
+    async function run() {
+        if (isRunning) return;
+        isRunning = true;
+        await new Promise(resolve => setTimeout(resolve, delay));
+        while (isRunning) {
+            // sleep
+            await new Promise(resolve => setTimeout(resolve, speed));
+            up();
+            await new Promise(resolve => setTimeout(resolve, speed));
+            down();
+            console.log(speed);
+        }
+    }
+
+    function stop() {
+        isRunning = false;
+    }
 </script>
 
 <img src={pathCurrent} alt="Piston">

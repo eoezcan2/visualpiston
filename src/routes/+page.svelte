@@ -1,17 +1,17 @@
 <script lang="ts">
     import Engine from "$lib/Engine.svelte";
-    import {EngineType} from '$lib/engineTypes.ts'
+    import {engineTypes} from "$lib/engineStore";
 
-    const engineTypes : EngineType[] = Object.keys(EngineType).filter(key => isNaN(Number(key))) as Array<keyof typeof EngineType>; // Get all the keys of the EngineType enum
-
-    let selectedType : EngineType = EngineType.INLINE4;
+    let selectedType : string = engineTypes[0];
+    let selectedSpeedMultiplier : number = 1.00;
 </script>
 
 <main>
+    <input type="range" min="0.5" max="2" step="0.25" bind:value={selectedSpeedMultiplier}>
     <select bind:value={selectedType}>
         {#each engineTypes as engineType}
             <option>{engineType}</option>
         {/each}
     </select>
-    <Engine type={selectedType} />
+    <Engine type={selectedType} speedMultiplier={selectedSpeedMultiplier} />
 </main>

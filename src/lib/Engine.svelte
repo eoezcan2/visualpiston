@@ -1,14 +1,14 @@
 <script lang="ts">
     import Piston from './Piston.svelte';
-    import {EngineType} from '$lib/engineTypes.ts'
     import { engineStore } from './engineStore.ts';
 
     const delay : number = 50;  // Base delay of each piston in ms
     const speed : number = 100; // Delay between each stroke in ms
 
     export let type : EngineType;
+    export let speedMultiplier : number;
 
-    let pistons = [1, 2, 3, 4]; // Default array of pistons with their indexes
+    const pistons : number[] = [1, 2, 3, 4, 5, 6];
 
     /**
      * Notifies each piston component to run
@@ -33,11 +33,20 @@
             });
         });
     }
+
 </script>
 
 <button on:click={startEngine}>Start Engine</button>
 <button on:click={stopEngine}>Stop Engine</button>
 
-{#each pistons as piston, index}
-    <Piston index={index} delay={delay} speed={speed} />
-{/each}
+{#if type === "Inline 4"}
+    <Piston index="0" delay={delay} speed={speed * speedMultiplier} />
+    <Piston index="1" delay={delay * 2} speed={speed * speedMultiplier} />
+    <Piston index="2" delay={delay * 2} speed={speed * speedMultiplier} />
+    <Piston index="3" delay={delay} speed={speed * speedMultiplier} />
+{:else if type === "Inline 2"}
+    <Piston index="0" delay={delay} speed={speed * speedMultiplier} />
+    <Piston index="1" delay={delay * 2} speed={speed * speedMultiplier} />
+{:else }
+    Not implemented yet!
+{/if}
