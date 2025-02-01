@@ -4,23 +4,31 @@
 
     let selectedType : string = engineTypes[0];
     let selectedSpeedMultiplier : number = 1.00;
+
+    let startHook;
+    let stopHook;
+
+    function onChangeAction() {
+        stopHook();
+        startHook();
+    }
 </script>
 
 <main>
     <h1>Visual Pistons</h1>
     <div id="options">
-        <select bind:value={selectedType}>
+        <select bind:value={selectedType} on:change={onChangeAction}>
             {#each engineTypes as engineType}
                 <option>{engineType}</option>
             {/each}
         </select>
-        <input type="range" min="0.1" max="1" step="0.1" bind:value={selectedSpeedMultiplier}>
+        <input type="range" min="0.1" max="1" step="0.1" bind:value={selectedSpeedMultiplier} on:change={onChangeAction}>
         <div id="sound-button" on:click={() => console.log("test")}>
             <img src="/volume.png" alt="Volume" width="30" height="30">
         </div>
     </div>
     <div id="engine">
-        <Engine type={selectedType} speedMultiplier={selectedSpeedMultiplier} />
+        <Engine type={selectedType} speedMultiplier={selectedSpeedMultiplier} bind:start={startHook} bind:stop={stopHook} />
     </div>
 </main>
 

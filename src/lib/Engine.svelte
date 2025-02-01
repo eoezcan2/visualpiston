@@ -34,6 +34,9 @@
         });
     }
 
+    export const start = () => startEngine();
+    export const stop = () => stopEngine();
+
 </script>
 
 <div id="buttons">
